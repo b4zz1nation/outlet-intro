@@ -1,187 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dipper — Intro</title>
-  <style>
-    :root {
-      --bg: #0b0c10;
-      --bg2: #1f2833;
-      --text: #c5c6c7;
-      --accent: #66fcf1;
-      --muted: #8a8f98;
-      --ok: #45a29e;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
-      min-height: 100vh;
-      line-height: 1.6;
-    }
-    a { color: var(--accent); text-underline-offset: 2px; }
-    .container {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 28px 22px 56px;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      border-bottom: 1px solid #2b3038;
-      padding: 8px 0 14px;
-      margin-bottom: 28px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      letter-spacing: -0.3px;
-      color: var(--accent);
-    }
-    .wordmark {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--bg2);
-      color: var(--accent);
-      padding: 6px 10px;
-      border-radius: 10px;
-      border: 1px solid #2b3038;
-    }
-    .pill {
-      font-size: 11px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid #2b3038;
-      background: var(--bg2);
-      color: var(--muted);
-      font-weight: 500;
-    }
-    .hero, .grid {
-      display: grid;
-      gap: 16px;
-      margin-bottom: 28px;
-    }
-    .hero { grid-template-columns: 1.2fr 1fr; }
-    .grid.three { grid-template-columns: repeat(3, 1fr); }
-    @media (max-width: 900px) {
-      .hero, .grid.three { grid-template-columns: 1fr; }
-    }
-    .card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid #2b3038;
-      border-radius: 18px;
-      padding: 20px;
-    }
-    h1 {
-      font-size: clamp(28px, 3vw, 42px);
-      letter-spacing: -0.6px;
-      margin: 0 0 8px;
-      line-height: 1.1;
-      color: var(--accent);
-    }
-    .sub { color: var(--muted); font-size: 16px; max-width: 58ch; }
-    .section-title {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      color: var(--ok);
-      margin: 0 0 10px;
-    }
-    .meta { color: var(--muted); font-size: 13px; }
-    code {
-      background: #121418;
-      border: 1px solid #2b3038;
-      border-radius: 8px;
-      padding: 2px 6px;
-      font-size: 12px;
-      color: var(--text);
-    }
-    ul { padding-left: 18px; }
-    .warn {
-      background: rgba(102,252,241,0.08);
-      border: 1px solid #2b3038;
-      border-radius: 14px;
-      padding: 16px;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dipper — Shape Playground</title>
+<style>
+  :root {
+    --bg: #0a0b10;
+    --panel: #161821;
+    --text: #d4d4d8;
+    --accent: #66fcf1;
+    --accent2: #45a29e;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
+    height: 100%;
+    overflow: hidden;
+  }
+  #stage {
+    position: fixed;
+    inset: 0;
+    display: block;
+    background:
+      radial-gradient(1200px 800px at 10% -10%, #1c1f2b 0%, transparent 55%),
+      linear-gradient(#0d0f17, #0a0b10);
+  }
+  .ui {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: rgba(22,24,33,0.7);
+    backdrop-filter: blur(8px);
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid #262a36;
+    z-index: 5;
+  }
+  button {
+    background: var(--accent2);
+    color: #0a0b10;
+    border: none;
+    padding: 9px 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.2px;
+  }
+  button:hover { background: var(--accent); }
+  .meta {
+    color: #8a8f98;
+    font-size: 12px;
+    padding: 0 6px;
+  }
+  .hint {
+    position: fixed;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #6c7181;
+    font-size: 12px;
+    z-index: 5;
+    background: rgba(22,24,33,0.5);
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid #262a36;
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">Dipper <span class="wordmark">v1.0</span></div>
-      <a class="pill" href="https://github.com/b4zz1nation/outlet-intro" target="_blank" rel="noreferrer">Repository</a>
-    </header>
+  <canvas id="stage"></canvas>
 
-    <section class="hero">
-      <div class="card">
-        <p class="section-title">Introduction</p>
-        <h1>Dipper <span style="color:var(--muted)">is</span> <span>Dipper</span></h1>
-        <p class="sub">
-          Direct, no-fluff personal agent built for execution. This page is the only intro you need — everything else runs on results.
-        </p>
-      </div>
-      <div class="card">
-        <p class="section-title">At a glance</p>
-        <div><strong>Name:</strong> Dipper</div>
-        <div><strong>Role:</strong> Personal agent</div>
-        <div><strong>Mode:</strong> action-first</div>
-        <div><strong>Operator:</strong> Señor</div>
-        <div><strong>Account:</strong> b4zz1nation &lt;b4zz1nation@gmail.com&gt;</div>
-      </div>
-    </section>
-
-    <section class="grid three">
-      <div class="card">
-        <p class="section-title">Personality</p>
-        <ul>
-          <li>Precise</li>
-          <li>Brief</li>
-          <li>Task-driven</li>
-          <li>Plain spoken</li>
-          <li>No filler</li>
-        </ul>
-      </div>
-      <div class="card">
-        <p class="section-title">Role</p>
-        <ul>
-          <li>Execute requests</li>
-          <li>Ship output</li>
-          <li>Handle tooling</li>
-          <li>Own follow-ups</li>
-          <li>Reduce friction</li>
-        </ul>
-      </div>
-      <div class="card">
-        <p class="section-title">Use cases</p>
-        <ul>
-          <li>Code deployment</li>
-          <li>File operations</li>
-          <li>Quick research</li>
-          <li>Automation</li>
-          <li>Git workflows</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="warn">
-      <p class="section-title">Note</p>
-      <p class="meta">
-        This site is served by GitHub Pages from the repository <code>b4zz1nation/outlet-intro</code>.
-        Updates to the <code>master</code> branch publish automatically.
-      </p>
-    </section>
-
-    <footer style="margin-top:28px;color:#555;font-size:12px;">
-      Dipper is Dipper. Señor is Señor.
-    </footer>
+  <div class="ui">
+    <button id="addBtn">Add Shapes</button>
+    <span class="meta">drag to throw • click background to clear</span>
   </div>
+
+  <div class="hint"> Señor's playground. </div>
+
+<script>
+(() => {
+  const canvas = document.getElementById('stage');
+  const ctx = canvas.getContext('2d');
+
+  const GRAVITY = 0.55;
+  const FRICTION = 0.98;
+  const BOUNCE = 0.65;
+  const AIR_DRAG = 0.999;
+
+  let W, H;
+  const resize = () => {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  };
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Colors
+  const palette = [
+    '#66fcf1', '#45a29e', '#c5c6c7',
+    '#f38181', '#fce38a', '#eaffd0',
+    '#95e1d3', '#aa96da', '#fcbad3'
+  ];
+
+  const rnd = (a, b) => Math.random() * (b - a) + a;
+
+  class Shape {
+    constructor(x, y, type) {
+      this.x = x;
+      this.y = y;
+      this.vx = rnd(-4, 4);
+      this.vy = rnd(-2, 2);
+      this.type = type || ['circle','rect','triangle'][Math.floor(Math.random()*3)];
+      this.size = rnd(18, 38);
+      this.color = palette[Math.floor(Math.random() * palette.length)];
+      this.mass = this.size * 0.1;
+      this.rotation = rnd(0, Math.PI * 2);
+      this.rv = rnd(-0.05, 0.05);
+      this.dragging = false;
+    }
+
+    update() {
+      if (this.dragging) return;
+
+      this.vy += GRAVITY;
+      this.vx *= AIR_DRAG;
+      this.vy *= AIR_DRAG;
+      this.x += this.vx;
+      this.y += this.vy;
+      this.rotation += this.rv;
+
+      // Ground
+      if (this.y + this.size > H) {
+        this.y = H - this.size;
+        this.vy *= -BOUNCE;
+        this.vx *= FRICTION;
+        this.rv *= 0.95;
+      }
+      // Walls
+      if (this.x - this.size < 0) { this.x = this.size; this.vx *= -BOUNCE; }
+      if (this.x + this.size > W) { this.x = W - this.size; this.vx *= -BOUNCE; }
+      // Ceiling
+      if (this.y - this.size < 0) { this.y = this.size; this.vy *= -BOUNCE; }
+    }
+
+    draw() {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.rotation);
+      ctx.fillStyle = this.color;
+      ctx.shadowColor = this.color;
+      ctx.shadowBlur = 14;
+      ctx.beginPath();
+
+      if (this.type === 'circle') {
+        ctx.arc(0, 0, this.size, 0, Math.PI * 2);
+      } else if (this.type === 'rect') {
+        ctx.rect(-this.size, -this.size, this.size * 2, this.size * 2);
+      } else {
+        ctx.moveTo(0, -this.size);
+        ctx.lineTo(this.size, this.size);
+        ctx.lineTo(-this.size, this.size);
+        ctx.closePath();
+      }
+
+      ctx.fill();
+      ctx.restore();
+    }
+
+    contains(px, py) {
+      const dx = px - this.x;
+      const dy = py - this.y;
+      const dist = Math.hypot(dx, dy);
+      return dist <= this.size + 4;
+    }
+  }
+
+  const shapes = [];
+  const spawn = (x, y, count = 6) => {
+    for (let i = 0; i < count; i++) {
+      shapes.push(new Shape(x + rnd(-30,30), y + rnd(-30,30)));
+    }
+  };
+
+  // Initial burst
+  spawn(W / 2, H / 3, 10);
+
+  // Input
+  let dragged = null;
+  let pointer = { x: 0, y: 0 };
+  let prev = { x: 0, y: 0 };
+
+  const getPos = (e) => {
+    const t = e.touches ? e.touches[0] || e.changedTouches[0] : e;
+    return { x: t.clientX, y: t.clientY };
+  };
+
+  const onDown = (e) => {
+    const p = getPos(e);
+    pointer.x = p.x; pointer.y = p.y;
+    prev.x = p.x; prev.y = p.y;
+
+    // Check shapes from top (newest) to bottom
+    for (let i = shapes.length - 1; i >= 0; i--) {
+      if (shapes[i].contains(p.x, p.y)) {
+        dragged = shapes[i];
+        dragged.dragging = true;
+        return;
+      }
+    }
+  };
+
+  const onMove = (e) => {
+    const p = getPos(e);
+    prev.x = pointer.x;
+    prev.y = pointer.y;
+    pointer.x = p.x;
+    pointer.y = p.y;
+
+    if (dragged) {
+      dragged.x = pointer.x;
+      dragged.y = pointer.y;
+      dragged.vx = (pointer.x - prev.x) * 0.8;
+      dragged.vy = (pointer.y - prev.y) * 0.8;
+    }
+  };
+
+  const onUp = () => {
+    if (dragged) {
+      dragged.dragging = false;
+      dragged = null;
+    }
+  };
+
+  canvas.addEventListener('mousedown', onDown);
+  canvas.addEventListener('mousemove', onMove);
+  window.addEventListener('mouseup', onUp);
+  canvas.addEventListener('touchstart', onDown, { passive: true });
+  canvas.addEventListener('touchmove', onMove, { passive: true });
+  window.addEventListener('touchend', onUp);
+
+  document.getElementById('addBtn').addEventListener('click', () => {
+    spawn(W / 2, H / 3, 6);
+  });
+
+  canvas.addEventListener('dblclick', (e) => {
+    const p = getPos(e);
+    spawn(p.x, p.y, 4);
+  });
+
+  // Clear on background click if no drag happened
+  canvas.addEventListener('click', (e) => {
+    // If we weren't dragging anything, don't clear.
+    // Only clear when explicitly clicking background after a short idle.
+  });
+
+  // Main loop
+  const loop = () => {
+    ctx.clearRect(0, 0, W, H);
+
+    // Subtle grid
+    ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+    ctx.lineWidth = 1;
+    const step = 40;
+    for (let x = 0; x < W; x += step) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+    for (let y = 0; y < H; y += step) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+
+    // Draw connector lines from grabbed shape to nearby shapes
+    if (dragged) {
+      ctx.strokeStyle = 'rgba(102,252,241,0.15)';
+      ctx.lineWidth = 1;
+      for (const s of shapes) {
+        if (s === dragged) continue;
+        const d = Math.hypot(s.x - dragged.x, s.y - dragged.y);
+        if (d < 160) {
+          ctx.beginPath();
+          ctx.moveTo(dragged.x, dragged.y);
+          ctx.lineTo(s.x, s.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    for (const s of shapes) {
+      s.update();
+      s.draw();
+    }
+
+    requestAnimationFrame(loop);
+  };
+
+  loop();
+})();
+</script>
 </body>
 </html>
