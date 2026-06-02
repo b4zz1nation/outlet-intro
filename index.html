@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Outlet — Outlet is Outlet</title>
+<style>
+  :root{
+    --bg:#0a0a0a;
+    --bg2:#111113;
+    --txt:#111;
+    --muted:#444;
+    --accent:#111;
+    --ok:#111;
+    --warn:#111;
+    --line:rgba(0,0,0,0.06);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:radial-gradient(1200px 800px at 20% -10%,#e9e9eb 0%, #fff 45%, #fafafa 100%);
+    color:#111;
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
+    min-height:100vh;
+    line-height:1.45;
+  }
+  a{color:inherit;text-underline-offset:2px}
+  .container{
+    max-width:980px;
+    margin:0 auto;
+    padding:28px 22px 56px;
+  }
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    border-bottom:1px solid var(--line);
+    padding:8px 0 14px;
+    margin-bottom:28px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:720;
+    letter-spacing:-.3px;
+  }
+  .wordmark{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#111;
+    color:#fff;
+    padding:6px 10px;
+    border-radius:10px;
+  }
+  .pill{
+    font-size:11px;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid #e5e5e5;
+    background:#fff;
+    color:#444;
+    font-weight:500;
+  }
+  .hero{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:28px;
+    margin-bottom:38px;
+  }
+  .card{
+    background:rgba(255,255,255,0.75);
+    border:1px solid #e7e7e9;
+    border-radius:18px;
+    padding:20px;
+    backdrop-filter: blur(6px);
+  }
+  h1{
+    font-size: clamp(30px,3vw,46px);
+    letter-spacing:-.6px;
+    margin:0 0 8px;
+    line-height:1.05;
+  }
+  h1 span{color:#444}
+  .sub{color:#444;font-size:16px;max-width:52ch}
+  .panel-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+    margin-bottom:30px;
+  }
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr}
+    .panel-grid{grid-template-columns:1fr}
+  }
+  .kbd{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  }
+  .meta{color:#444;font-size:13px}
+  .section-title{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.3px;
+    color:#666;
+    margin:0 0 10px;
+  }
+  .note{
+    background:rgba(255,255,255,0.7);
+    border:1px solid #e9e9eb;
+    border-radius:14px;
+    padding:16px;
+  }
+  code{
+    background:#f3f3f4;
+    border:1px solid #e7e7e9;
+    border-radius:8px;
+    padding:2px 6px;
+    font-size:12px;
+    color:#222;
+  }
+  .muted{color:#444}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="brand">Outlet <span class="wordmark">v1.0</span></div>
+    <a class="pill" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+  </header>
+
+  <section class="hero">
+    <div class="card">
+      <p class="section-title">Introduction</p>
+      <h1>Outlet <span>is</span> <span>Outlet</span></h1>
+      <p class="sub">
+        A straightforward intro page for Outlet. Nothing fancy, just a clean place to say what it is, how it behaves, and why it exists.
+      </p>
+    </div>
+    <div class="card">
+      <p class="section-title">At a glance</p>
+      <div><strong>Name:</strong> Outlet</div>
+      <div><strong>Mode:</strong> intro site</div>
+      <div><strong>Status:</strong> live</div>
+      <div><strong>Owner:</strong> B4zz1 &lt;b4zz1nation@gmail.com&gt;</div>
+    </div>
+  </section>
+
+  <section class="panel-grid">
+    <div class="card">
+      <p class="section-title">Values</p>
+      <ul>
+        <li>No fluff</li>
+        <li>No filler</li>
+        <li>Direct delivery</li>
+        <li>Minimal noise</li>
+      </ul>
+    </div>
+    <div class="card">
+      <p class="section-title">Principles</p>
+      <ul>
+        <li>Short beats long</li>
+        <li>Done beats planned</li>
+        <li>Useful beats flashy</li>
+        <li>Action beats talk</li>
+      </ul>
+    </div>
+    <div class="card">
+      <p class="section-title">Use cases</p>
+      <ul>
+        <li>Personal agent</li>
+        <li>Code shipping</li>
+        <li>Quick research</li>
+        <li>File operations</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="note">
+    <p class="section-title">How to use this repo</p>
+    <p class="meta">
+      Open <code>index.html</code> in any browser. No server, no build step.
+      To publish, push to GitHub Pages and point it at <code>index.html</code>.
+    </p>
+  </section>
+
+  <footer style="margin-top:28px;color:#777;font-size:12px;">
+    Outlet is Outlet.
+  </footer>
+</div>
+</body>
+</html>
